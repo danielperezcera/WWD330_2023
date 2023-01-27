@@ -22,9 +22,26 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 // get parameters from the URL
-export function getParam(param){
+export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
   return product;
+}
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  const htmlStrings = list.map(templateFn);
+  const htmlStringsFiltered = htmlStrings.slice(0, 4);
+  //Clear the inner contents of the HTML element
+  if (clear === false) {
+    parentElement.insertAdjacentHTML(position, htmlStringsFiltered.join(""));
+  } else {
+    parentElement.innerHTML = htmlStringsFiltered.join("");
+  }
 }
