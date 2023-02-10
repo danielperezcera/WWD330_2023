@@ -37,30 +37,24 @@ export function renderListWithTemplate(
   clear = false
 ) {
   const htmlStrings = list.map(templateFn);
-  const htmlStringsFiltered = htmlStrings.slice(0, 4);
+  // const htmlStringsFiltered = htmlStrings.slice(0, 4);
   //Clear the inner contents of the HTML element
   if (clear === false) {
-    parentElement.insertAdjacentHTML(position, htmlStringsFiltered.join(""));
+    parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
   } else {
-    parentElement.innerHTML = htmlStringsFiltered.join("");
+    parentElement.innerHTML = htmlStrings.join("");
   }
 }
 
-export function renderWithTemplate(
-  template,
-  parentElement,
-  data,
-  callback
-) {
-    parentElement.insertAdjacentHTML("afterbegin", template);
-    if(callback) {
-        callback(data);
-    }
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
+  if (callback) {
+    callback(data);
+  }
 }
 
-export async function loadTemplate(path){
-  return await fetch(path)
-  .then((response) => response.text())
+export async function loadTemplate(path) {
+  return await fetch(path).then((response) => response.text());
 }
 // We believe this is the same as ^^^^
 // async function loadTemplate(path) {
@@ -74,7 +68,7 @@ export async function loadHeaderFooter() {
   const headerElement = document.querySelector("#main-header");
   const footerTemplate = await loadTemplate("../partials/footer.html");
   const footerElement = document.querySelector("#main-footer");
-  
+
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 }
