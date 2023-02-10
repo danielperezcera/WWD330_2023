@@ -1,14 +1,14 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
-      return `<section class="product-detail">
+  return `<section class="product-detail">
                 <h3>${product.Brand.Name}</h3>
 
                 <h2 class="divider">${product.NameWithoutBrand}</h2>
 
                 <img
                   class="divider"
-                  src="${product.Image}"
+                  src="${product.Images.PrimaryLarge}"
                   alt="${product.NameWithoutBrand}"
                 />
 
@@ -27,52 +27,48 @@ function productDetailsTemplate(product) {
 }
 
 export default class ProductDetails {
-    constructor(productId, dataSource){
-        this.productId = productId;
-        this.product = {};
-        this.dataSource = dataSource;
-      }
-
-    async init() {
-        
-        this.product = await this.dataSource.findProductById(this.productId);
-
-        this.renderProductDetails("main");
-        this.renderTitle();
-
-        document.getElementById("addToCart").addEventListener("click", this.addToCart.bind(this));
-        
-    }
-
-    addToCart() {
-
-      const query = getLocalStorage("so-cart");
-
-      if(query){
-        
-        let data_clear = "";
-    
-        query.forEach(item => data_clear += JSON.stringify(item) + ",");
-    
-        let data = data_clear + JSON.stringify(this.product);
-    
-        localStorage.setItem("so-cart", "[" + data + "]");
-    
-      }else{
-        setLocalStorage("so-cart", this.product);
-      }
-    }
-    
-    renderTitle() {
-      const element = document.querySelector("title");
-        element.textContent = "Sleep Outside | " + this.product.Name;
-    }
-    renderProductDetails(selector) {
-        const element = document.querySelector(selector);
-        element.insertAdjacentHTML(
-          "afterBegin",
-          productDetailsTemplate(this.product)
-        );
-      }
-    
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
   }
+
+  async init() {
+    this.product = await this.dataSource.findProductById(this.productId);
+
+    this.renderProductDetails("main");
+    this.renderTitle();
+
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", this.addToCart.bind(this));
+  }
+
+  addToCart() {
+    const query = getLocalStorage("so-cart");
+
+    if (query) {
+      let data_clear = "";
+
+      query.forEach((item) => (data_clear += JSON.stringify(item) + ","));
+
+      let data = data_clear + JSON.stringify(this.product);
+
+      localStorage.setItem("so-cart", "[" + data + "]");
+    } else {
+      setLocalStorage("so-cart", this.product);
+    }
+  }
+
+  renderTitle() {
+    const element = document.querySelector("title");
+    element.textContent = "Sleep Outside | " + this.product.Name;
+  }
+  renderProductDetails(selector) {
+    const element = document.querySelector(selector);
+    element.insertAdjacentHTML(
+      "afterBegin",
+      productDetailsTemplate(this.product)
+    );
+  }
+}
