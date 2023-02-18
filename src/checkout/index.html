@@ -63,7 +63,7 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
 
-        <form action="">
+        <form action="" name="checkout">
 
           <fieldset>
             <legend>Shipping</legend>
@@ -77,9 +77,9 @@
 
           <fieldset>
             <legend>Payment</legend>
-            <label>Card Number <input type="text" name="cardnumber" id="cardnumber" required></label>
+            <label>Card Number <input type="text" name="cardNumber" id="cardNumber" required></label>
             <label>Expiration <input type="text" name="expiration" id="expiration" required></label>
-            <label>Security Code <input type="text" name="seccode" id="seccode" required></label>
+            <label>Security Code <input type="text" name="code" id="code" required></label>
           </fieldset>
 
           <fieldset>
@@ -90,7 +90,7 @@
             <p><strong>Order Total </strong><span class="span-totals" id="ordertotal"></span></p>
           </fieldset>
           
-          <button>Checkout</button>
+          <button id="checkoutSubmit" type="submit">Checkout</button>
 
         </form>
 

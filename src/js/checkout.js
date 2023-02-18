@@ -5,6 +5,15 @@ import CheckoutProcess from "./CheckoutProcess.mjs";
 let CheckoutTotal = new CheckoutProcess("so-cart");
 
 CheckoutTotal.init();
-CheckoutTotal.calculateOrdertotal();
+
+document
+  .querySelector("#zip")
+  .addEventListener("blur", CheckoutTotal.calculateOrdertotal.bind(CheckoutTotal));
+// listening for click on the button
+document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  CheckoutTotal.checkout();
+});
 
 loadHeaderFooter();
