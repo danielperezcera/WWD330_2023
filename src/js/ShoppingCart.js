@@ -5,15 +5,20 @@ export default class ShoppingCart {
     constructor(key, parentSelector) {
         this.key = key;
         this.parentSelector = parentSelector;
+        this.itemsQ = 0;
+        this.subtotalPrice = 0;
+        this.shippingPrice = 0;
+        this.tax = 0;
       }
 
     renderCartContents() {
         const cartItems = getLocalStorage(this.key);
-    
+
         const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     
         document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
     }
+
 }
   
   function cartItemTemplate(item) {

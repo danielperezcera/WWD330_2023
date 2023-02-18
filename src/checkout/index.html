@@ -8,14 +8,14 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider">
       <div class="logo">
-        <img src="images/noun_Tent_2517.svg" alt="tent image for logo" />
+        <img src="../images/noun_Tent_2517.svg" alt="tent image for logo" />
 
         <a href="index.html">
           Sleep
@@ -25,6 +25,7 @@
 
       <div class="cart">
         <a href="cart/">
+          <!--  -->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <path
               d="M18.9 32.6c1.1 2.4 2.5 3.3 5.4 3.3 1.6 0 3.6-0.3 5.9-0.6 3.2-0.5 6.9-1 11.2-1 2.1 0 4.3 0.1 6.4 0.3 2.1 0.1 4.2 0.3 6.1 0.3 3.2 0 5.2-0.4 5.9-1.2 2.7-2.7 2.8-8.8 2.9-14.6 0.1-6.7 0.2-14.5 4.6-18.7 -0.5 0-1 0-1.6 0 -14.2 0-37.5 0-41.1 0C15.6 6.2 14.9 23.6 18.9 32.6z"
@@ -50,9 +51,10 @@
               d="M60.1 71.4v3.3h-5.2v-3.4c-1.7-0.3-3.3-0.7-4.6-1 -0.9 6.8-1.1 13.3-0.3 14.5 0.4 0.3 2.9 1.1 8 1.1h0c5 0 8.8-0.7 9.7-1.3 0.8-1.3 0.6-7.7-0.4-14.4C65.5 70.5 62.7 71.1 60.1 71.4z"
             />
 
-            <!-- <text x="0" y="115" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Natalia Woodroffe</text>
-            <text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
+             <text x="0" y="115" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Natalia Woodroffe</text>
+            <text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> 
           </svg>
+         
         </a>
       </div>
     </header>
@@ -60,6 +62,38 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+
+        <form action="">
+
+          <fieldset>
+            <legend>Shipping</legend>
+            <label>First Name <input type="text" name="fname" id="fname" required></label>
+            <label>Last Name <input type="text" name="lname" id="lname" required></label>
+            <label>Street <input type="text" name="street" id="street" required></label>
+            <label>City <input type="text" name="city" id="city" required></label>
+            <label>State <input type="text" name="state" id="state" required></label>
+            <label>Zip <input type="text" name="zip" id="zip" required></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment</legend>
+            <label>Card Number <input type="text" name="cardnumber" id="cardnumber" required></label>
+            <label>Expiration <input type="text" name="expiration" id="expiration" required></label>
+            <label>Security Code <input type="text" name="seccode" id="seccode" required></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Order Summary</legend>
+            <p>Item Subtotal(<span id="quantity"></span>) <span class="span-totals" id="subtotal"></span></p>
+            <p>Shipping Estimate <span class="span-totals" id="shipping"></span></p>
+            <p>Tax <span class="span-totals" id="tax"></span></p>
+            <p><strong>Order Total </strong><span class="span-totals" id="ordertotal"></span></p>
+          </fieldset>
+          
+          <button>Checkout</button>
+
+        </form>
+
       </section>
     </main>
 

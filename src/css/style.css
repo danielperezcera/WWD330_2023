@@ -220,3 +220,17 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+fieldset input {
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.span-totals {
+  float: right;
+}
+
+
+
