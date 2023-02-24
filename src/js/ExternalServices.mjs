@@ -1,10 +1,13 @@
-const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+// const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+const baseURL = "https://wdd330-backend.onrender.com/";
 
-function convertToJson(res) {
+async function convertToJson(res) {
+  const jsonResponse = await res.json(); //added team7
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "servicesError", message: jsonResponse }; //modified team7
+    // throw new Error("Bad Response");
   }
 }
 
@@ -18,7 +21,7 @@ export default class ExternalServices {
     // const data = await convertToJson(response);
     // return data.Result;
     return await fetch(baseURL + `products/search/${category}`)
-      .then(convertToJson)
+      .then((res) => convertToJson(res))
       .then((data) => data.Result);
   }
   async findProductById(id) {
