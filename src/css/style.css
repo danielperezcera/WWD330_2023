@@ -256,3 +256,14 @@ fieldset input {
 .span-totals {
   float: right;
 }
+
+.alert {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0a868;
+  border-color: #d8843b;
+  padding-right: 30px;
+  padding-left: 30px;
+}
