@@ -74,12 +74,7 @@ function modifyQuantity(productId,option) {
   if (cart) {
     // for each, check if the cartItem id is already present
     cart.forEach((cartItem) => {
-      // just in case we are using an old saved localstorage list
-      // it adds the quantity property
-      if (!cartItem.quantity) {
-        cartItem.quantity = 1;
-      }
-
+      
       // If we already have one with the same id, add to it
       if (cartItem.Id === productId) {
         alreadyExists = true;
@@ -102,18 +97,7 @@ function modifyQuantity(productId,option) {
       }
     });
   }
-  // don't want to mutate an array while traversing it
-  // if the item doesn't exist yet...
-  if (!alreadyExists) {
-    // create a temp newCartItem
-    const newCartItem = this.product;
-    // add the quantity property to it and assign a value of 1
-    newCartItem.quantity = 1;
-    cart.push(newCartItem);
-    alertMessage(`${this.product.Name} was added to the cart!`);
-  }
-
-  setLocalStorage("so-cart", cart);
+  
 
   
 }
