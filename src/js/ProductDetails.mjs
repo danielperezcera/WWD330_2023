@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, alertMessage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail">
@@ -45,19 +45,61 @@ export default class ProductDetails {
   }
 
   addToCart() {
-    const query = getLocalStorage("so-cart");
+    // const query = getLocalStorage("so-cart");
+    let cart = getLocalStorage("so-cart");
 
-    if (query) {
-      let data_clear = "";
-
-      query.forEach((item) => (data_clear += JSON.stringify(item) + ","));
-
-      let data = data_clear + JSON.stringify(this.product);
-
-      localStorage.setItem("so-cart", "[" + data + "]");
-    } else {
-      setLocalStorage("so-cart", this.product);
+    if (!cart) {
+      cart = [];
     }
+
+    // if it exists, only add to its quantity
+    // else we need to push it into the array after the check
+    let alreadyExists = false;
+
+    if (cart) {
+      // for each, check if the cartItem id is already present
+      cart.forEach((cartItem) => {
+        // just in case we are using an old saved localstorage list
+        // it adds the quantity property
+        if (!cartItem.quantity) {
+          cartItem.quantity = 1;
+        }
+
+        // If we already have one with the same id, add to it
+        if (cartItem.Id === this.product.Id) {
+          alreadyExists = true;
+          cartItem.quantity++;
+          alertMessage(`${this.product.Name} was added to the cart!`);
+        }
+      });
+    }
+    // don't want to mutate an array while traversing it
+    // if the item doesn't exist yet...
+    if (!alreadyExists) {
+      // create a temp newCartItem
+      const newCartItem = this.product;
+      // add the quantity property to it and assign a value of 1
+      newCartItem.quantity = 1;
+      cart.push(newCartItem);
+      alertMessage(`${this.product.Name} was added to the cart!`);
+    }
+
+    // console.log(cart);
+    setLocalStorage("so-cart", cart);
+
+    // alert("Item added!");
+    // if (query) {
+    //   console.log(query);
+    //   let data_clear = "";
+
+    //   query.forEach((item) => (data_clear += JSON.stringify(item) + ","));
+
+    //   let data = data_clear + JSON.stringify(this.product);
+
+    //   localStorage.setItem("so-cart", "[" + data + "]");
+    // } else {
+    //   setLocalStorage("so-cart", this.product);
+    // }
   }
 
   renderTitle() {

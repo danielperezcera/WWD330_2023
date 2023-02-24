@@ -122,6 +122,31 @@ button {
 .products {
   padding: 0.5em;
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.grid > li {
+  width: 150px;
+  padding: 0.5em;
+  margin: 1em;
+}
+
+.grid a {
+  text-decoration: none;
+}
+
+.grid h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -231,6 +256,3 @@ fieldset input {
 .span-totals {
   float: right;
 }
-
-
-
